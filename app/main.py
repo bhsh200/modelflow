@@ -1,5 +1,3 @@
-from contextlib import asynccontextmanager
-
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 
@@ -9,8 +7,8 @@ from app.routers import datasets, models, monitoring, predictions, training
 from app.services.training import fail_interrupted_runs
 
 
-# defines what happens when a server starts up and shuts down (yield runs at startup and code after it runs at shutdown)
-@asynccontextmanager
+# defines what happens when the server starts up and shuts down:
+# code before yield runs at startup
 async def lifespan(app: FastAPI):
     settings.data_dir.mkdir(parents=True, exist_ok=True)
     init_db()

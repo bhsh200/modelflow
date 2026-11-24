@@ -6,6 +6,7 @@ import tempfile
 _tmp = tempfile.mkdtemp(prefix="modelflow-test-")
 os.environ["DATA_DIR"] = _tmp
 os.environ["DATABASE_URL"] = f"sqlite:///{_tmp}/test.db"
+os.environ["STORAGE_BACKEND"] = "local"     # tests never touch real S3, whatever .env says
 
 import pandas as pd  # noqa: E402
 import pytest  # noqa: E402
