@@ -1,0 +1,41 @@
+[project]
+name = "modelflow"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Bhargavi Sudarsan", email = "bhargavi.sudarsan2384@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "boto3>=1.44.10",
+    "fastapi[standard]>=0.165.0",
+    "joblib>=1.6.0",
+    "pandas>=3.1.1",
+    "pyarrow>=26.0.1",
+    "pydantic-settings>=2.16.3",
+    "python-multipart>=0.0.34",
+    "scikit-learn>=1.9.1",
+    "scipy>=1.18.1",
+    "sqlalchemy>=2.1.9",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "moto[s3]>=5.2.6",
+    "pytest>=9.2.0",
+    "ruff>=0.17.6",
+]
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]   # errors, pyflakes (unused imports etc.), import sorting

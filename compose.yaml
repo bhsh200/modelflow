@@ -1,0 +1,15 @@
+services:
+  api:
+    build: .
+    image: modelflow:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - modelflow-data:/app/data      # database + Parquet + models survive restarts
+    env_file:
+      - path: .env
+        required: false
+    restart: unless-stopped
+
+volumes:
+  modelflow-data:
