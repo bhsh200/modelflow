@@ -1,0 +1,14 @@
+# Used on the EC2 server. The deploy job copies this file to ~/modelflow/compose.yaml
+services:
+  api:
+    image: ${IMAGE}:${IMAGE_TAG:-latest}
+    ports:
+      - "80:8000"                     # http://<server-ip>/docs
+    volumes:
+      - modelflow-data:/app/data      # SQLite database survives redeploys
+    env_file:
+      - .env                          # STORAGE_BACKEND, S3_BUCKET, AWS_REGION (no keys: the EC2 role is used)
+    restart: unless-stopped
+
+volumes:
+  modelflow-data:
